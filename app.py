@@ -8,8 +8,15 @@ from maccabytes_helper import extract_greek_text_from_perseus
 import os
 print("Current working directory:", os.getcwd())
 
+import os
+
+xml_path = r"C:/Users/la18861/maccabytes/perseus/tlg0551/tlg001/tlg0551.tlg001.1st1K-grc1.xml"
+if not os.path.exists(xml_path):
+    raise FileNotFoundError(f"File not found: {xml_path}")
+sample_polybius = extract_greek_text_from_perseus(xml_path)
+
 sample_polybius = extract_greek_text_from_perseus(
-    r"C:\Users\la18861\maccabytes\perseus\tlg0551\tlg001\tlg0551.tlg001.1st1K-grc1.xml"
+    r"C:/Users/la18861/maccabytes/perseus/tlg0551/tlg001/tlg0551.tlg001.1st1K-grc1.xml"
 )
 # Read sample texts from local files
 def load_text(filename):
