@@ -52,9 +52,7 @@ with col1:
 
 with col2:
     st.header("Text B")
-    if st.button("🏛️ Load Polybius"):
-        st.session_state.text_b = sample_polybius
-    text_b = st.text_area("Enter second Greek text", height=200, key="text_b")
+    text_b = st.text_area("Enter second Greek text", height=200, key="text_b", value="")
 
 
 if text_a.strip() and text_b.strip():
