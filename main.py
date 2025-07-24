@@ -6,8 +6,8 @@
 # │   compare.py
 # ├── requirements.txt
 # ├── perseus/
-#       ├── tlg0551/tlg001/tlg0551.tlg001.1st1K-grc1.xml # Polybius
-# ├── 1maccabees.txt
+#       ├── polybius1.txt # a clean Polybius text from Perseus https://vocab.perseus.org/editions/
+# ├── 1maccabees.txt # a clean 1 Maccabees text from https://www.ellopos.net/elpenor/greek-texts/septuagint/chapter.asp?book=21
 # ├── README.md
 
 
