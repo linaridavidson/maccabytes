@@ -9,7 +9,7 @@ def load_text(filename):
         return f.read()
 
 sample_maccabees = load_text("1maccabees.txt")
-sample_polybius = load_text("tlg0001.tlg001.perseus-grc2.xml")
+sample_polybius = load_text("polybius.xml")
 
 
 
