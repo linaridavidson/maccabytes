@@ -35,6 +35,16 @@
 
 
 ## PROJECT MACCABYTES
+
+#Make sure you have Python 3.11 installed on your system. CLTK needs Python 3.11 to run properly.
+# You can download it from the official Python website: https://www.python.org/downloads/
+# You can check your Python version by running: 
+# $ python --version
+# If you have Python 3.11 installed, you can run the project using the following command:
+# To run 3.11, type this into your terminal:
+#           $ py -3.11 --version
+
+
 import argparse
 from cltk import NLP
 from collections import Counter
