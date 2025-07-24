@@ -51,7 +51,7 @@ from collections import Counter
 from rich import print
 from rich.table import Table
 
-from cltk.src.cltk import text
+from cltk import text
 
 # Initialize CLTK NLP for Ancient Greek
 nlp = NLP(language="grc")
