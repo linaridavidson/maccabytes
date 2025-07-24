@@ -90,3 +90,72 @@ if text_a.strip() and text_b.strip():
         st.subheader("Text B: Top Lemmas")
         for lemma, count in counts_b.most_common(10):
             st.write(f"{lemma} — {count}×")
+# Create a button for the comparison
+if st.button("Compare Texts and Show Results"):
+    # This block will execute ONLY when the button is clicked
+
+    st.write("Performing lemma comparison... Please wait.") # Optional: show a loading message
+
+    try:
+        # 1. Your CLTK-based Lemma Extraction and Comparison Logic
+        #    This is where you'd call your functions that use CLTK to:
+        #    a. Tokenize text_a and text_b
+        #    b. Lemmatize the tokens
+        #    c. Compare the resulting lemmas (e.g., find common ones, unique ones, frequencies)
+
+        # Placeholder for your actual logic:
+        # Let's simulate some results for demonstration
+        # In a real scenario, this 'lemmatized_a' and 'lemmatized_b' would come from CLTK
+        # For simplicity, I'll just split by spaces here, but you'd use CLTK tokenization/lemmatization
+        words_a = text_a.lower().split()
+        words_b = text_b.lower().split()
+
+        # Dummy lemmatization (replace with actual CLTK lemmatizer)
+        lemmas_a = [word.replace('.', '').replace(',', '') for word in words_a] # Simplified
+        lemmas_b = [word.replace('.', '').replace(',', '') for word in words_b] # Simplified
+
+        # Calculate common and unique lemmas (example logic)
+        set_lemmas_a = set(lemmas_a)
+        set_lemmas_b = set(lemmas_b)
+
+        common_lemmas = sorted(list(set_lemmas_a.intersection(set_lemmas_b)))
+        unique_to_a = sorted(list(set_lemmas_a.difference(set_lemmas_b)))
+        unique_to_b = sorted(list(set_lemmas_b.difference(set_lemmas_a)))
+
+        # 2. Display the Results
+        st.header("Comparison Results")
+
+        if common_lemmas:
+            st.subheader("Common Lemmas:")
+            st.write(", ".join(common_lemmas))
+        else:
+            st.info("No common lemmas found between the two texts.")
+
+        if unique_to_a:
+            st.subheader("Lemmas Unique to Text A:")
+            st.write(", ".join(unique_to_a))
+
+        if unique_to_b:
+            st.subheader("Lemmas Unique to Text B:")
+            st.write(", ".join(unique_to_b))
+
+        # You might also want to show lemma frequencies, a comparative table, etc.
+        # Example: showing top 10 lemmas in each text
+        from collections import Counter
+        freq_a = Counter(lemmas_a)
+        freq_b = Counter(lemmas_b)
+
+        st.subheader("Top Lemmas in Text A:")
+        for lemma, count in freq_a.most_common(5): # Adjust number as needed
+            st.write(f"- {lemma}: {count}")
+
+        st.subheader("Top Lemmas in Text B:")
+        for lemma, count in freq_b.most_common(5): # Adjust number as needed
+            st.write(f"- {lemma}: {count}")
+
+
+    except Exception as e:
+        st.error(f"An error occurred during comparison: {e}")
+        st.info("Please ensure your input texts are valid Greek and your CLTK setup is correct.")
+
+# --- End of Results Button and Display Logic ---
