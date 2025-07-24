@@ -27,6 +27,10 @@
     # pip install lxml
 # rich
     # pip install rich
+# cltk
+    # pip install cltk
+# streamlit
+    # pip install streamlit
 
 
 
@@ -36,6 +40,8 @@ from cltk import NLP
 from collections import Counter
 from rich import print
 from rich.table import Table
+
+from cltk.src.cltk import text
 
 # Initialize CLTK NLP for Ancient Greek
 nlp = NLP(language="grc")
@@ -55,6 +61,7 @@ def clean_greek_biblical_text(raw_text, remove_punctuation=True):
 
     # Remove all other stray digits (if they snuck in)
     cleaned = re.sub(r'\d+', '', cleaned)
+    return clean_greek_biblical_text(text, remove_punctuation=False)
 
     if remove_punctuation:
         # Remove Greek/English punctuation
