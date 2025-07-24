@@ -3,7 +3,13 @@ from cltk import NLP
 from collections import Counter
 import pandas as pd
 
+def load_text(filename):
+    """Reads the content of a text file and returns it as a string."""
+    with open(filename, "r", encoding="utf-8") as f:
+        return f.read()
+
 from maccabytes_helper import extract_greek_text_from_perseus
+from maccabytes_helper import load_text
 
 import os
 print("Current working directory:", os.getcwd())
