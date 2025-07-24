@@ -49,3 +49,36 @@ You should see output like this:
 Local URL: http://localhost:8501
 
 Click or copy that link into your browser!
+
+
+You can have the text boxes pre-filled with the 1maccabees.txt and a clean version of Polybius (tlg0001):
+
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.header("Text A")
+    if st.button("📜 Load 1 Maccabees"):
+        st.session_state.text_a = sample_maccabees
+    text_a = st.text_area("Enter first Greek text", height=200, key="text_a")
+
+with col2:
+    st.header("Text B")
+    if st.button("🏛️ Load Polybius"):
+        st.session_state.text_b = sample_polybius
+    text_b = st.text_area("Enter second Greek text", height=200, key="text_b")
+
+
+...
+Or you can have blank boxes and insert your own texts to compare. If you want to change to blank boxes, go to app.py, and for the text input put:
+
+#col1, col2 = st.columns(2)
+
+##Boxes that are empty
+#with col1:
+#    st.header("Text A - Maccabees")
+#    text_a = st.text_area("Enter Maccabees text", height=200)
+
+#with col2:
+#    st.header("Text B - Polybius")
+#    text_b = st.text_area("Enter Polybius text", height=200)
