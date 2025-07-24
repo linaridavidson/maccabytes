@@ -5,8 +5,12 @@ import pandas as pd
 
 from maccabytes_helper import extract_greek_text_from_perseus
 
-sample_polybius = extract_greek_text_from_perseus("perseus/tlg0551/tlg001/tlg0551.tlg001.1st1K-grc1.xml")
+import os
+print("Current working directory:", os.getcwd())
 
+sample_polybius = extract_greek_text_from_perseus(
+    r"C:\Users\la18861\maccabytes\perseus\tlg0551\tlg001\tlg0551.tlg001.1st1K-grc1.xml"
+)
 # Read sample texts from local files
 def load_text(filename):
     with open(filename, "r", encoding="utf-8") as f:
