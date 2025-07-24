@@ -2,24 +2,26 @@ import streamlit as st
 from cltk import NLP
 from collections import Counter
 import pandas as pd
+import os
+
+print("Current working directory:", os.getcwd())
 
 def load_text(filename):
     """Reads the content of a text file and returns it as a string."""
     with open(filename, "r", encoding="utf-8") as f:
         return f.read()
 
-from maccabytes_helper import extract_greek_text_from_perseus
-from maccabytes_helper import load_text
-
-import os
-print("Current working directory:", os.getcwd())
-
-import os
-
 clean_polybius_path = r"C:/Users/la18861/maccabytes/polybius1.txt"
 if not os.path.exists(clean_polybius_path):
     raise FileNotFoundError(f"File not found: {clean_polybius_path}")
 sample_polybius = load_text(clean_polybius_path)
+
+clean_maccabees_path = r"C:/Users/la18861/maccabytes/1maccabees.txt"
+if not os.path.exists(clean_maccabees_path):
+    raise FileNotFoundError(f"File not found: {clean_maccabees_path}")
+sample_maccabees = load_text(clean_maccabees_path)
+
+from maccabytes_helper import extract_greek_text_from_perseus
 
 
 # Setup
