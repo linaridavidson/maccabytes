@@ -10,21 +10,17 @@ print("Current working directory:", os.getcwd())
 
 import os
 
-xml_path = r"polybius.xml"
+xml_path = r"C:/Users/la18861/maccabytes/perseus/tlg0551/tlg001/tlg0551.tlg001.1st1K-grc1.xml"
 if not os.path.exists(xml_path):
     raise FileNotFoundError(f"File not found: {xml_path}")
 sample_polybius = extract_greek_text_from_perseus(xml_path)
 
-sample_polybius = extract_greek_text_from_perseus(
-    r"polybius.xml"
-)
-# Read sample texts from local files
 def load_text(filename):
     with open(filename, "r", encoding="utf-8") as f:
         return f.read()
 
 sample_maccabees = load_text("1maccabees.txt")
-sample_polybius = load_text("polybius.xml")
+# sample_polybius = load_text("polybius.xml")  # <-- REMOVE or COMMENT OUT THIS LINE
 
 
 
