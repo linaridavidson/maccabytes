@@ -17,12 +17,14 @@ def clean_greek_biblical_text(text, remove_punctuation=True):
 
 def extract_greek_text_from_perseus(xml_path):
     parser = etree.XMLParser(recover=True)
-    with open(xml_path, "rb") as f:  # <-- Use open() in binary mode
+    with open(xml_path, "rb") as f:
         tree = etree.parse(f, parser)
     root = tree.getroot()
     ns = {'tei': 'http://www.tei-c.org/ns/1.0'}
     paragraphs = root.xpath("//tei:body//tei:p", namespaces=ns)
-    return "\n".join([p.text for p in paragraphs if p.text])
+    raw_text = "\n".join([p.text for p in paragraphs if p.text])
+    # Clean the extracted text before returning
+    return clean_greek_biblical_text(raw_text)
 # filepath: c:\Users\la18861\maccabytes\maccabytes_helper.py
 
 
