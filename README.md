@@ -1,0 +1,51 @@
+
+
+
+MACCABYTES PROTOTYPE (c)2025
+Lindsey A. Davidson 
+github = linaridavidson
+
+
+...and now for something completely different...
+
+This is a prototype, work in progress.
+Maccabytes is a NLP tool using CLTK and running Python 3.11
+
+To run a clean setup, open PowerShall (not as Admin)
+move to your project folder ~maccabytes
+
+bash
+cd C:\Users\la18861\maccabytes
+
+If that folder doesn't exist yet, you can create it:
+bash
+mkdir C:\Users\~\maccabytes
+cd C:\Users\~\maccabytes
+
+Create a virtual Python 3.11 env so that CLTK will run properly
+bash
+py -3.11 -m venv venv
+.\venv\Scripts\Activate.ps1
+
+Your prompt in powershell should now start with (venv)
+
+Install all required packages
+bash
+pip install --upgrade pip
+pip install cltk streamlit lxml rich
+
+
+
+
+Run the app (app.py)
+Make sure you're still in your environment and project folder.
+In powershell, run:
+
+cd C:\Users\la18861\maccabytes
+.\venv\Scripts\Activate.ps1
+streamlit run app.py
+
+You should see output like this:
+Local URL: http://localhost:8501
+
+Click or copy that link into your browser!
