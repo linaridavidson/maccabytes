@@ -14,23 +14,23 @@ Maccabytes is a NLP tool using CLTK and running Python 3.11
 To run a clean setup, open PowerShall (not as Admin)
 move to your project folder ~maccabytes
 
-bash
+```bash
 cd C:\Users\la18861\maccabytes
 
 If that folder doesn't exist yet, you can create it:
-bash
+```bash
 mkdir C:\Users\~\maccabytes
 cd C:\Users\~\maccabytes
 
 Create a virtual Python 3.11 env so that CLTK will run properly
-bash
+```bash
 py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
 
 Your prompt in powershell should now start with (venv)
 
 Install all required packages
-bash
+```bash
 pip install --upgrade pip
 pip install cltk streamlit lxml rich
 
@@ -42,6 +42,7 @@ Make sure you're still in your environment and project folder.
 In powershell, run:
 
 cd C:\Users\la18861\maccabytes
+py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
 streamlit run app.py
 
@@ -82,3 +83,13 @@ Or you can have blank boxes and insert your own texts to compare. If you want to
 #with col2:
 #    st.header("Text B - Polybius")
 #    text_b = st.text_area("Enter Polybius text", height=200)
+
+
+
+
+‎𐤀 CLTK version '1.5.0'. When using the CLTK in research, please cite: https://aclanthology.org/2021.acl-demo.3/
+
+Pipeline for language 'Ancient Greek' (ISO: 'grc'): `GreekNormalizeProcess`, `GreekSpacyProcess`, `GreekEmbeddingsProcess`, `StopsProcess`.
+
+⸖ ``GreekSpacyProcess`` using OdyCy model by Center for Humanities Computing Aarhus from https://huggingface.co/chcaa . Please cite: https://aclanthology.org/2023.latechclfl-1.14
+⸖ ``LatinEmbeddingsProcess`` using word2vec model by University of Oslo from http://vectors.nlpl.eu/ . Please cite: https://aclanthology.org/W17-0237/
