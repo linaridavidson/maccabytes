@@ -21,6 +21,8 @@ sample_maccabees = load_text(clean_maccabees_path)
 
 # Streamlit UI setup
 
+# Add a title for the app
+st.title("Maccabytes - Ancient Greek Text Lemma Comparison - Prototype")
 
 # Add custom CSS for text wrapping
 st.markdown(
