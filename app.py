@@ -20,16 +20,37 @@ if not os.path.exists(clean_maccabees_path):
 sample_maccabees = load_text(clean_maccabees_path)
 
 # Streamlit UI setup
-st.set_page_config(layout="wide")
-st.title("Maccabytes - Greek Lemma Comparison Tool - prototype")
-st.caption(
-    """✨ *Powered by the Classical Language Toolkit (CLTK).*
+
+
+# Add custom CSS for text wrapping
+st.markdown(
+    """
+    <style>
+    .wrapped-caption {
+        word-wrap: break-word;
+        white-space: normal;
+        font-size: 0.9rem;
+        color: gray;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Use st.markdown with the custom CSS class
+st.markdown(
+    """
+    <div class="wrapped-caption">
+    ✨ *Powered by the Classical Language Toolkit (CLTK).*
     Created by Lindsey A. Davidson (github: linaridavidson), PhD, lecturer in Jewish Studies, University of Bristol, UK. 2025.
 
     This app compares the most frequent **lemmata** (dictionary headwords) found in two passages 
     of Ancient Greek - specifically 1 Maccabees and any other Greek text. It is good to use short sections of text. Useful for studying authorial style, vocabulary overlap, or genre differences.
-    """
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
+
 
 # Text input columns
 col1, col2 = st.columns(2)
@@ -39,13 +60,19 @@ with col1:
     if st.button("📜 Load 1 Maccabees"):
         st.session_state.text_a = sample_maccabees
     text_a = st.text_area("Enter first Greek text", height=200, key="text_a")
+    if len(text_a) > 10000:
+        st.warning("Text A is too long. Please limit it to 10,000 characters.")
+
 
 with col2:
     st.header("Text B")
     text_b = st.text_area("Enter second Greek text", height=200, key="text_b", value="")
+    if len(text_b) > 10000:
+        st.warning("Text B is too long. Please limit it to 10,000 characters.")
 
-# Function to process and analyze text
-def process_text(text):
+# Function to process and analyze text - cached for performance
+@st.cache_data
+def process_text_cached(text):
     """Tokenizes and lemmatizes Greek text using CLTK."""
     doc = nlp.analyze(text)
     return [t.lemma for t in doc.tokens if t.lemma and t.lemma.isalpha()]
@@ -73,8 +100,8 @@ if text_a.strip() and text_b.strip():
     st.write("Processing texts...")
 
     # Process texts
-    lemmas_a = process_text(text_a)
-    lemmas_b = process_text(text_b)
+    lemmas_a = process_text_cached(text_a)
+    lemmas_b = process_text_cached(text_b)
 
     # Compare texts
     shared_counts, unique_to_a, unique_to_b, counts_a, counts_b = compare_texts(lemmas_a, lemmas_b)
