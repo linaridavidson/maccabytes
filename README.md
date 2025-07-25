@@ -129,14 +129,13 @@ Or you can have blank boxes and insert your own texts to compare. If you want to
 ```bash
 #col1, col2 = st.columns(2)
 
-##Boxes that are empty
-#with col1:
-#    st.header("Text A - Maccabees")
-#    text_a = st.text_area("Enter Maccabees text", height=200)
+with col1:
+    st.header("Text A - Maccabees")
+    text_a = st.text_area("Enter Maccabees text", height=200)
 
-#with col2:
-#    st.header("Text B - Polybius")
-#    text_b = st.text_area("Enter Polybius text", height=200)
+with col2:
+    st.header("Text B - Polybius")
+    text_b = st.text_area("Enter Polybius text", height=200)
 ```
 
 
@@ -148,3 +147,5 @@ Pipeline for language 'Ancient Greek' (ISO: 'grc'): `GreekNormalizeProcess`, `Gr
 
 ⸖ ``GreekSpacyProcess`` using OdyCy model by Center for Humanities Computing Aarhus from https://huggingface.co/chcaa . Please cite: https://aclanthology.org/2023.latechclfl-1.14
 ⸖ ``LatinEmbeddingsProcess`` using word2vec model by University of Oslo from http://vectors.nlpl.eu/ . Please cite: https://aclanthology.org/W17-0237/
+
+linaridavidson (Lindsey A. Davidson) - https://biblicaltoolkit.com/ and research staff profile: https://research-information.bris.ac.uk/en/persons/lindsey-a-davidson.
