@@ -1,12 +1,13 @@
 # maccabyte_helpers.py
 
 from cltk import NLP
+cltk_nlp = NLP(language="grc")
 from collections import Counter
 from lxml import etree
 import re
 
-# Initialize CLTK NLP for Ancient Greek
-nlp = NLP(language="grc")
+# Initialize CLTK NLP for Ancient Greek ^^^
+
 
 # === Text Cleaning and Extraction Functions ===
 def clean_greek_biblical_text(text, remove_punctuation=True):
