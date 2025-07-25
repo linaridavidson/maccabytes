@@ -5,9 +5,10 @@ from collections import Counter
 from lxml import etree
 import re
 
-
+# Initialize CLTK NLP for Ancient Greek
 nlp = NLP(language="grc")
 
+# === Text Cleaning and Extraction Functions ===
 def clean_greek_biblical_text(text, remove_punctuation=True):
     """Cleans Greek biblical text by removing numbers, punctuation, and extra spaces."""
     text = re.sub(r'^\s*\d+\s+|\(\d+\)|\d+', '', text, flags=re.MULTILINE)
@@ -28,8 +29,8 @@ def extract_greek_text_from_perseus(xml_path):
     raw_text = "\n".join([p.text for p in paragraphs if p.text])
     # Clean the extracted text before returning
     return clean_greek_biblical_text(raw_text)
-# filepath: c:\Users\la18861\maccabytes\maccabytes_helper.py
 
+# === Text Analysis Functions ===
 
 def analyze_text(text):
     """
@@ -52,27 +53,7 @@ def get_features(text, mode="lemma"):
         return [t.lemma for t in doc.tokens if t.lemma]
     return [t.pos for t in doc.tokens if t.pos]
 
-#def compare_texts(text1, text2, mode="lemma", top_n=10):
-#    """
- #   Compares two texts and returns shared and unique features (lemmas or POS tags).
-  #  """
-  #  # Extract features
-  #  features1 = get_features(text1, mode)
-  #  features2 = get_features(text2, mode)
-
-    # Count frequencies
-  #  freq1 = Counter(features1)
-  #  freq2 = Counter(features2)
-
-    # Find shared and unique items
-  #  shared_items = set(freq1.keys()) & set(freq2.keys())
-  #  shared_counts = [
-  #      {"Item": item, "Text 1": freq1[item], "Text 2": freq2[item]}
-  #      for item in shared_items
-  #  ]
- #   shared_counts.sort(key=lambda x: x["Text 1"] + x["Text 2"], reverse=True)
-
- #   return shared_counts[:top_n], freq1, freq2
+# === Text Comparison Functions ===
 
 def compare_texts(lemmas_a, lemmas_b, top_n=20):
     """Compares two lists of lemmata and returns shared and unique lemmas."""
@@ -91,7 +72,3 @@ def compare_texts(lemmas_a, lemmas_b, top_n=20):
     unique_to_b = list(set(counts_b.keys()) - set(counts_a.keys()))
 
     return shared_counts[:top_n], unique_to_a, unique_to_b, counts_a, counts_b
-
-    print("Shared Lemmas:", shared_counts)
-    print("Unique to Text A:", unique_to_a)
-    print("Unique to Text B:", unique_to_b)
