@@ -3,6 +3,10 @@ from cltk import NLP
 from collections import Counter
 import pandas as pd
 import os
+import heapq
+
+# Number of top shared lemmas to display
+top_n = 20
 
 # Initialize NLP for Ancient Greek
 nlp = NLP(language="grc")
@@ -73,11 +77,22 @@ with col2:
         st.warning("Text B is too long. Please limit it to 10,000 characters.")
 
 # Function to process and analyze text - cached for performance
+#@st.cache_data
+#def process_text_cached(text, chunk_size=500):
+ #   """Tokenizes and lemmatizes Greek text using CLTK."""
+ #   doc = nlp.analyze(text)
+ #   return [t.lemma for t in doc.tokens if t.lemma and t.lemma.isalpha()]
+
+# Function to process and analyze text - cached for performance
 @st.cache_data
-def process_text_cached(text):
-    """Tokenizes and lemmatizes Greek text using CLTK."""
-    doc = nlp.analyze(text)
-    return [t.lemma for t in doc.tokens if t.lemma and t.lemma.isalpha()]
+def process_text_cached(text, chunk_size=500):
+    """Tokenizes and lemmatizes Greek text in chunks using CLTK."""
+    chunks = [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
+    lemmas = []
+    for chunk in chunks:
+        doc = nlp.analyze(chunk)
+        lemmas.extend([t.lemma for t in doc.tokens if t.lemma and t.lemma.isalpha()])
+    return lemmas
 
 # Function to compare texts
 def compare_texts(lemmas_a, lemmas_b):
@@ -86,12 +101,11 @@ def compare_texts(lemmas_a, lemmas_b):
     counts_b = Counter(lemmas_b)
 
     shared = set(counts_a.keys()) & set(counts_b.keys())
-    shared_counts = [
-        {"lemma": lemma, "Text A": counts_a[lemma], "Text B": counts_b[lemma]}
-        for lemma in shared
-    ]
-    shared_counts.sort(key=lambda x: x["Text A"] + x["Text B"], reverse=True)
-
+    shared_counts = heapq.nlargest(
+        top_n,
+        [{"lemma": lemma, "Text A": counts_a[lemma], "Text B": counts_b[lemma]} for lemma in shared],
+        key=lambda x: x["Text A"] + x["Text B"]
+    )
     unique_to_a = sorted(set(counts_a.keys()) - shared)
     unique_to_b = sorted(set(counts_b.keys()) - shared)
 
@@ -110,7 +124,7 @@ if text_a.strip() and text_b.strip():
 
     # Display results
     st.subheader("📊 Top Shared Lemmas")
-    df_shared = pd.DataFrame(shared_counts[:20])
+    df_shared = pd.DataFrame(shared_counts[:20]) # Display only the top 20 shared lemmas
     st.dataframe(df_shared)
 
     st.bar_chart(df_shared.set_index("lemma"))
