@@ -1,13 +1,20 @@
 # maccabyte_helpers.py
-
-from cltk import NLP
+import streamlit as st
+from cltk.nlp import NLP
 cltk_nlp = NLP(language="grc")
 from collections import Counter
 from lxml import etree
 import re
 
-# Initialize CLTK NLP for Ancient Greek ^^^
 
+@st.cache_resource
+def get_cltk_nlp():
+    return NLP(language="grc")
+
+# Initialize CLTK NLP for Ancient Greek
+# This function is cached to improve performance
+cltk_nlp = get_cltk_nlp()
+# Helper function to load text files
 
 # === Text Cleaning and Extraction Functions ===
 def clean_greek_biblical_text(text, remove_punctuation=True):
@@ -34,21 +41,17 @@ def extract_greek_text_from_perseus(xml_path):
 # === Text Analysis Functions ===
 
 def analyze_text(text):
-    """
-    Tokenizes and lemmatizes Greek text using CLTK.
-    Returns a list of dictionaries with word, lemma, POS, and morphological features.
-    """
+    cltk_nlp = get_cltk_nlp()
     doc = cltk_nlp.analyze(text)
-    tokens_data = [
-        {"Word": t.string, "Lemma": t.lemma, "POS": t.pos, "Morph": t.features}
-        for t in doc.tokens if t.string.strip()
-    ]
-    return tokens_data
+    return doc
+
+
 
 def get_features(text, mode="lemma"):
     """
     Extracts features (lemmas or POS tags) from the text using CLTK.
     """
+    cltk_nlp = get_cltk_nlp()
     doc = cltk_nlp.analyze(text)
     if mode == "lemma":
         return [t.lemma for t in doc.tokens if t.lemma]
