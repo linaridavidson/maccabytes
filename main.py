@@ -3,16 +3,17 @@
 # maccabyte_text_analyzer/
 # ├── venv/
 # ├── main.py
-# │   compare.py
-# ├── requirements.txt
+# │   app.py
+# ├── maccabytes_helper.py
+# ├── cltk_data/
+# │   requirements.txt
 # ├── perseus/
 #       ├── polybius1.txt # a clean Polybius text from Perseus https://vocab.perseus.org/editions/
 # ├── 1maccabees.txt # a clean 1 Maccabees text from https://www.ellopos.net/elpenor/greek-texts/septuagint/chapter.asp?book=21
 # ├── README.md
 
 
-
-## REQUIREMENTS.txt
+# ├── requirements.txt
 # To run the project, you need to install the required packages.
 # You can do this by running the following command in your terminal:
 # pip install -r requirements.txt
@@ -20,7 +21,7 @@
 # Make sure you have Python and pip installed on your system before running this command.
 # If you want to run the project in a virtual environment, you can create one using the following commands:
           #  python -m venv venv
-          #  source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+          #  source venv/bin/activate  # On Windows use `.\venv\Scripts\Activate.ps1`
 # After activating the virtual environment, you can install the requirements again:
           #  pip install -r requirements.txt
 # lxml
@@ -42,7 +43,7 @@
 # $ python --version
 # If you have Python 3.11 installed, you can run the project using the following command:
 # To run 3.11, type this into your terminal:
-#           $ py -3.11 --version
+#     $ py -3.11 --version
 
 
 import argparse

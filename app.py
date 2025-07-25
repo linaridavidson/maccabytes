@@ -21,12 +21,13 @@ sample_maccabees = load_text(clean_maccabees_path)
 
 # Streamlit UI setup
 st.set_page_config(layout="wide")
-st.title("Maccabytes - Greek Lemma Comparator")
+st.title("Maccabytes - Greek Lemma Comparison Tool - prototype")
 st.caption(
     """✨ *Powered by the Classical Language Toolkit (CLTK).*
+    Created by Lindsey A. Davidson (github: linaridavidson), PhD, lecturer in Jewish Studies, University of Bristol, UK. 2025.
 
     This app compares the most frequent **lemmata** (dictionary headwords) found in two passages 
-    of Ancient Greek - specifically 1 Maccabees and Polybius. Useful for studying authorial style, vocabulary overlap, or genre differences.
+    of Ancient Greek - specifically 1 Maccabees and any other Greek text. It is good to use short sections of text. Useful for studying authorial style, vocabulary overlap, or genre differences.
     """
 )
 
