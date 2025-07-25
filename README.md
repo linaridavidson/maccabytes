@@ -148,4 +148,4 @@ Pipeline for language 'Ancient Greek' (ISO: 'grc'): `GreekNormalizeProcess`, `Gr
 ⸖ ``GreekSpacyProcess`` using OdyCy model by Center for Humanities Computing Aarhus from https://huggingface.co/chcaa . Please cite: https://aclanthology.org/2023.latechclfl-1.14
 ⸖ ``LatinEmbeddingsProcess`` using word2vec model by University of Oslo from http://vectors.nlpl.eu/ . Please cite: https://aclanthology.org/W17-0237/
 
-linaridavidson (Lindsey A. Davidson) - https://biblicaltoolkit.com/ and research staff profile: https://research-information.bris.ac.uk/en/persons/lindsey-a-davidson.
+linaridavidson (Lindsey A. Davidson) - https://biblicaltoolkit.wordpress.com/ and research staff profile: https://research-information.bris.ac.uk/en/persons/lindsey-a-davidson.
