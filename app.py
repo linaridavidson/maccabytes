@@ -1,5 +1,5 @@
 import streamlit as st
-from cltk import NLP
+from cltk.nlp import NLP
 from collections import Counter
 import pandas as pd
 import os
