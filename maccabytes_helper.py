@@ -38,7 +38,7 @@ def analyze_text(text):
     Tokenizes and lemmatizes Greek text using CLTK.
     Returns a list of dictionaries with word, lemma, POS, and morphological features.
     """
-    doc = nlp.analyze(text)
+    doc = cltk_nlp.analyze(text)
     tokens_data = [
         {"Word": t.string, "Lemma": t.lemma, "POS": t.pos, "Morph": t.features}
         for t in doc.tokens if t.string.strip()
@@ -49,7 +49,7 @@ def get_features(text, mode="lemma"):
     """
     Extracts features (lemmas or POS tags) from the text using CLTK.
     """
-    doc = nlp.analyze(text)
+    doc = cltk_nlp.analyze(text)
     if mode == "lemma":
         return [t.lemma for t in doc.tokens if t.lemma]
     return [t.pos for t in doc.tokens if t.pos]
